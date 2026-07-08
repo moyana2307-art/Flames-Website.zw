@@ -25,25 +25,42 @@ header{display:flex;justify-content:space-between;align-items:center;padding:16p
 .logo{cursor:pointer;display:flex;align-items:center;gap:0;height:48px;transition:transform .3s}
 .logo:hover{transform:scale(1.05)}
 .logo svg{height:48px;width:auto}
-.flame-path{animation:flameFlicker 2s ease-in-out infinite}
-@keyframes flameFlicker{
-  0%{fill:#ff2a2a;filter:drop-shadow(0 0 6px rgba(255,42,42,.6))}
-  20%{fill:#ff5555;filter:drop-shadow(0 0 10px rgba(255,42,42,.8))}
-  40%{fill:#ff2a2a;filter:drop-shadow(0 0 8px rgba(255,42,42,.7))}
-  60%{fill:#ff6666;filter:drop-shadow(0 0 12px rgba(255,42,42,.9))}
-  80%{fill:#ff2a2a;filter:drop-shadow(0 0 7px rgba(255,42,42,.65))}
-  100%{fill:#ff2a2a;filter:drop-shadow(0 0 6px rgba(255,42,42,.6))}
-}
+.flame-outer{animation:flameOuter 1.8s ease-in-out infinite;transform-origin:center bottom}
+.flame-mid{animation:flameMid 1.2s ease-in-out infinite;transform-origin:center bottom}
+.flame-inner{animation:flameInner 0.8s ease-in-out infinite;transform-origin:center bottom}
 .flame-glow{animation:flameGlow 1.5s ease-in-out infinite}
-@keyframes flameGlow{
-  0%{opacity:.3;transform:scale(1)}
-  50%{opacity:.6;transform:scale(1.15)}
-  100%{opacity:.3;transform:scale(1)}
+.flame-text{animation:flameText 2.5s ease-in-out infinite}
+.flame-sub{animation:flameSub 3s ease-in-out infinite}
+@keyframes flameOuter{
+  0%{d:path("M 22 12 Q 16 20 16 28 Q 16 40 22 45 Q 28 40 28 28 Q 28 20 22 12 Z");filter:drop-shadow(0 0 8px rgba(255,42,42,.7))}
+  25%{d:path("M 22 10 Q 15 19 15 28 Q 15 41 22 46 Q 29 41 29 28 Q 29 19 22 10 Z");filter:drop-shadow(0 0 14px rgba(255,69,0,.9))}
+  50%{d:path("M 22 13 Q 17 21 17 28 Q 17 39 22 44 Q 27 39 27 28 Q 27 21 22 13 Z");filter:drop-shadow(0 0 10px rgba(255,42,42,.8))}
+  75%{d:path("M 22 9 Q 14 18 14 28 Q 14 42 22 47 Q 30 42 30 28 Q 30 18 22 9 Z");filter:drop-shadow(0 0 16px rgba(255,69,0,1))}
+  100%{d:path("M 22 12 Q 16 20 16 28 Q 16 40 22 45 Q 28 40 28 28 Q 28 20 22 12 Z");filter:drop-shadow(0 0 8px rgba(255,42,42,.7))}
 }
-.flame-text{animation:flamePulse 2s ease-in-out infinite}
-@keyframes flamePulse{
-  0%,100%{letter-spacing:1px}
-  50%{letter-spacing:2px}
+@keyframes flameMid{
+  0%{d:path("M 22 18 Q 19 23 19 28 Q 19 37 22 41 Q 25 37 25 28 Q 25 23 22 18 Z")}
+  30%{d:path("M 22 16 Q 18 22 18 28 Q 18 38 22 42 Q 26 38 26 28 Q 26 22 22 16 Z")}
+  60%{d:path("M 22 19 Q 20 24 20 28 Q 20 36 22 40 Q 24 36 24 28 Q 24 24 22 19 Z")}
+  100%{d:path("M 22 18 Q 19 23 19 28 Q 19 37 22 41 Q 25 37 25 28 Q 25 23 22 18 Z")}
+}
+@keyframes flameInner{
+  0%{d:path("M 22 22 Q 21 25 21 28 Q 21 34 22 37 Q 23 34 23 28 Q 23 25 22 22 Z");opacity:.9}
+  50%{d:path("M 22 20 Q 20 24 20 28 Q 20 35 22 39 Q 24 35 24 28 Q 24 24 22 20 Z");opacity:1}
+  100%{d:path("M 22 22 Q 21 25 21 28 Q 21 34 22 37 Q 23 34 23 28 Q 23 25 22 22 Z");opacity:.9}
+}
+@keyframes flameGlow{
+  0%{opacity:.25;transform:scale(1)}
+  50%{opacity:.55;transform:scale(1.2)}
+  100%{opacity:.25;transform:scale(1)}
+}
+@keyframes flameText{
+  0%,100%{letter-spacing:2px;fill:#ff2a2a}
+  50%{letter-spacing:4px;fill:#ff5555}
+}
+@keyframes flameSub{
+  0%,100%{opacity:.5}
+  50%{opacity:.8}
 }
 .logo span{display:none}
 nav{display:flex;align-items:center;gap:24px}
@@ -61,7 +78,11 @@ nav{display:flex;align-items:center;gap:24px}
 .ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
 .ham span{width:24px;height:2px;background:#fff;border-radius:2px}
 .mob-menu{display:none;flex-direction:column;background:#0d0d0d;border-top:1px solid var(--border)}
+.mob-logo{display:flex;justify-content:center;align-items:center;padding:18px 6% 12px;border-bottom:2px solid var(--red);cursor:pointer;transition:background .2s}
+.mob-logo:hover{background:rgba(255,42,42,.05)}
+.mob-logo svg{height:46px;width:auto}
 .mob-menu a{padding:14px 6%;border-bottom:1px solid var(--border);color:#ddd;text-decoration:none;font-weight:500}
+.mob-menu a:hover{color:var(--red);background:rgba(255,42,42,.05)}
 .mob-menu.open{display:flex}
 @media(max-width:680px){.nav-links{display:none}.ham{display:flex}}
 
@@ -79,7 +100,9 @@ nav{display:flex;align-items:center;gap:24px}
 
 /* ── HERO ── */
 .hero{min-height:88vh;
-  background:linear-gradient(135deg,#0a0a0a 0%,#1a0000 60%,#0a0a0a 100%);
+  background:
+    linear-gradient(135deg,rgba(10,10,10,.93) 0%,rgba(26,0,0,.72) 50%,rgba(10,10,10,.93) 100%),
+    url('https://images.unsplash.com/photo-1571869791859-8003315caf78?w=1920&auto=format&fit=crop') center/cover no-repeat;
   display:flex;align-items:center;justify-content:center;text-align:center;
   padding:60px 20px;position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;inset:0;
@@ -142,6 +165,9 @@ nav{display:flex;align-items:center;gap:24px}
 .deal-btn{background:var(--red);color:#fff;border:none;border-radius:var(--btn-r);
   padding:11px 18px;font-weight:700;font-size:14px;cursor:pointer;font-family:inherit;transition:.2s}
 .deal-btn:hover{background:var(--red-dark);transform:translateY(-2px)}
+.deal-img-wrap{margin:-24px -24px 10px;border-radius:16px 16px 0 0;overflow:hidden;height:150px}
+.deal-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+.deal-card:hover .deal-img-wrap img{transform:scale(1.06)}
 
 /* ── PROMO ── */
 .promo-banner{background:linear-gradient(135deg,#130000,#1a0000);
@@ -201,15 +227,27 @@ nav{display:flex;align-items:center;gap:24px}
 .step-num{font-size:16px;font-weight:800;color:var(--red);letter-spacing:1px;margin-bottom:10px}
 .step h4{font-size:15px;margin-bottom:8px}
 .step p{font-size:13px;color:var(--muted);line-height:1.6}
+.steps-wrapper{display:grid;grid-template-columns:1.2fr 1fr;gap:36px;align-items:center}
+.steps-image img{width:100%;border-radius:16px;border:1px solid var(--border);display:block}
+@media(max-width:760px){.steps-wrapper{grid-template-columns:1fr}.steps-image{order:-1}}
 
 /* ── ABOUT ── */
-.about-hero{height:320px;background:linear-gradient(135deg,#1a0000,#0a0a0a);
+.about-img-wrap{margin-bottom:24px;border-radius:16px;overflow:hidden;max-height:360px}
+.about-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;border-radius:16px;
+  border:1px solid var(--border)}
+.about-hero{height:320px;
+  background:
+    linear-gradient(135deg,rgba(10,10,10,.92) 0%,rgba(26,0,0,.7) 50%,rgba(10,10,10,.92) 100%),
+    url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1920&auto=format&fit=crop') center/cover no-repeat;
   display:flex;align-items:center;justify-content:center;text-align:center;position:relative}
 .about-hero::before{content:'';position:absolute;inset:0;
   background:radial-gradient(ellipse at 50% 60%,rgba(255,42,42,.2),transparent 65%)}
 .about-hero h1{font-size:clamp(32px,5vw,54px);font-weight:800;text-transform:uppercase;position:relative}
 .about-hero h1 span{color:var(--red)}
 .about-hero p{color:#bbb;margin-top:12px;position:relative;font-size:15px}
+#contact-hero{background:
+  linear-gradient(135deg,rgba(10,10,10,.92) 0%,rgba(26,0,0,.7) 50%,rgba(10,10,10,.92) 100%),
+  url('https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=1920&auto=format&fit=crop') center/cover no-repeat}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px}
 @media(max-width:720px){.about-grid{grid-template-columns:1fr}}
 .about-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;transition:.25s}
@@ -237,6 +275,28 @@ nav{display:flex;align-items:center;gap:24px}
 .cta-block a{background:#fff;color:var(--red);padding:13px 28px;border-radius:30px;
   font-weight:800;text-decoration:none;transition:.2s;display:inline-block}
 .cta-block a:hover{background:#000;color:#fff}
+
+/* ── TRACK ORDER ── */
+.track-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:40px 28px;text-align:center;max-width:600px;margin:0 auto}
+.track-timeline{display:flex;flex-direction:column;gap:0}
+.tl-item{display:flex;align-items:center;gap:16px;padding:14px 0;border-left:2px solid #333;margin-left:8px;padding-left:24px;position:relative}
+.tl-item:first-child{padding-top:0}
+.tl-item:last-child{border-left-color:transparent;padding-bottom:0}
+.tl-dot{width:12px;height:12px;border-radius:50%;background:#333;position:absolute;left:-7px}
+.tl-item.done .tl-dot{background:var(--red);box-shadow:0 0 8px rgba(255,42,42,.5)}
+.tl-item.active .tl-dot{background:#ffaa00;box-shadow:0 0 8px rgba(255,170,0,.6)}
+.tl-item.done>div>strong,.tl-item.active>div>strong{color:#fff}
+.tl-item>div>strong{font-size:14px;font-weight:700}
+.tl-item>div>span{display:block;font-size:12px;color:#888;margin-top:2px}
+/* ── FAQS ── */
+.faq-list{display:flex;flex-direction:column;gap:12px}
+.faq-item{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:.25s}
+.faq-item:hover{border-color:var(--red)}
+.faq-q{padding:18px 22px;font-weight:600;font-size:15px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;user-select:none}
+.faq-chev{color:var(--red);font-size:12px;transition:transform .3s}
+.faq-item.open .faq-chev{transform:rotate(180deg)}
+.faq-a{padding:0 22px 18px;font-size:14px;color:var(--muted);line-height:1.7;display:none}
+.faq-item.open .faq-a{display:block}
 
 /* ── CONTACT ── */
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
@@ -373,23 +433,29 @@ footer{background:#050505;padding:50px 6% 20px;border-top:1px solid #1a1a1a}
 <!-- HEADER -->
 <header>
   <div class="logo" onclick="showPage('home')">
-    <svg viewBox="0 0 240 60" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 250 60" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <filter id="flameShadow" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
+        <linearGradient id="flameGrad" x1="0" y1="1" x2="0" y2="0">
+          <stop offset="0%" stop-color="#cc1f1f"/>
+          <stop offset="50%" stop-color="#ff4500"/>
+          <stop offset="100%" stop-color="#ffd700"/>
+        </linearGradient>
+        <linearGradient id="textGrad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#ff2a2a"/>
+          <stop offset="100%" stop-color="#ff6b35"/>
+        </linearGradient>
+        <filter id="flameGlowFilter" x="-60%" y="-60%" width="220%" height="220%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="3"/>
         </filter>
       </defs>
-      <!-- Animated flame icon -->
-      <g>
-        <ellipse cx="22" cy="35" rx="8" ry="10" class="flame-glow" fill="rgba(255,42,42,.3)"/>
-        <!-- Main flame path -->
-        <path class="flame-path" d="M 22 15 Q 18 22 18 28 Q 18 38 22 42 Q 26 38 26 28 Q 26 22 22 15 Z" filter="url(#flameShadow)"/>
-        <!-- Inner bright flame -->
-        <path class="flame-path" d="M 22 20 Q 20 24 20 28 Q 20 35 22 38 Q 24 35 24 28 Q 24 24 22 20 Z" fill="#ff6666" opacity="0.8"/>
+      <g transform="translate(0,2)">
+        <ellipse cx="22" cy="38" rx="10" ry="12" class="flame-glow" fill="rgba(255,42,42,.25)"/>
+        <path class="flame-outer" d="M 22 12 Q 16 20 16 28 Q 16 40 22 45 Q 28 40 28 28 Q 28 20 22 12 Z" fill="url(#flameGrad)" filter="url(#flameGlowFilter)"/>
+        <path class="flame-mid" d="M 22 18 Q 19 23 19 28 Q 19 37 22 41 Q 25 37 25 28 Q 25 23 22 18 Z" fill="#ff6b00"/>
+        <path class="flame-inner" d="M 22 22 Q 21 25 21 28 Q 21 34 22 37 Q 23 34 23 28 Q 23 25 22 22 Z" fill="#fffbe6"/>
       </g>
-      <!-- Text: FLAMES -->
-      <text x="42" y="26" font-family="Poppins, sans-serif" font-size="26" font-weight="800" fill="#ff2a2a" letter-spacing="2" class="flame-text">FLAMES</text>
-      <text x="42" y="44" font-family="Poppins, sans-serif" font-size="8" font-weight="600" fill="#888" letter-spacing="1.5">RESTAURANT & GRILL</text>
+      <text x="42" y="27" font-family="Poppins, sans-serif" font-size="26" font-weight="800" fill="url(#textGrad)" letter-spacing="2" class="flame-text">FLAMES</text>
+      <text x="42" y="45" font-family="Poppins, sans-serif" font-size="8" font-weight="600" fill="#888" letter-spacing="1.5" class="flame-sub">RESTAURANT &amp; GRILL</text>
     </svg>
   </div>
   <nav>
@@ -404,6 +470,32 @@ footer{background:#050505;padding:50px 6% 20px;border-top:1px solid #1a1a1a}
   </nav>
 </header>
 <div class="mob-menu" id="mob-menu">
+  <div class="mob-logo" onclick="showPage('home');closeMob()">
+    <svg viewBox="0 0 250 60" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="flameGradM" x1="0" y1="1" x2="0" y2="0">
+          <stop offset="0%" stop-color="#cc1f1f"/>
+          <stop offset="50%" stop-color="#ff4500"/>
+          <stop offset="100%" stop-color="#ffd700"/>
+        </linearGradient>
+        <linearGradient id="textGradM" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#ff2a2a"/>
+          <stop offset="100%" stop-color="#ff6b35"/>
+        </linearGradient>
+        <filter id="flameGlowFilterM" x="-60%" y="-60%" width="220%" height="220%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="3"/>
+        </filter>
+      </defs>
+      <g transform="translate(0,2)">
+        <ellipse cx="22" cy="38" rx="10" ry="12" class="flame-glow" fill="rgba(255,42,42,.25)"/>
+        <path class="flame-outer" d="M 22 12 Q 16 20 16 28 Q 16 40 22 45 Q 28 40 28 28 Q 28 20 22 12 Z" fill="url(#flameGradM)" filter="url(#flameGlowFilterM)"/>
+        <path class="flame-mid" d="M 22 18 Q 19 23 19 28 Q 19 37 22 41 Q 25 37 25 28 Q 25 23 22 18 Z" fill="#ff6b00"/>
+        <path class="flame-inner" d="M 22 22 Q 21 25 21 28 Q 21 34 22 37 Q 23 34 23 28 Q 23 25 22 22 Z" fill="#fffbe6"/>
+      </g>
+      <text x="42" y="27" font-family="Poppins, sans-serif" font-size="26" font-weight="800" fill="url(#textGradM)" letter-spacing="2" class="flame-text">FLAMES</text>
+      <text x="42" y="45" font-family="Poppins, sans-serif" font-size="8" font-weight="600" fill="#888" letter-spacing="1.5" class="flame-sub">RESTAURANT &amp; GRILL</text>
+    </svg>
+  </div>
   <a onclick="showPage('home');closeMob()">Home</a>
   <a onclick="showPage('menu');closeMob()">Menu</a>
   <a onclick="showPage('about');closeMob()">About</a>
@@ -442,6 +534,9 @@ footer{background:#050505;padding:50px 6% 20px;border-top:1px solid #1a1a1a}
     <div class="sec-sub">Limited-time prices — grab them before they burn out </div>
     <div class="deals-grid">
       <div class="deal-card">
+        <div class="deal-img-wrap">
+          <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&auto=format&fit=crop" alt="Flame Burger Combo" loading="lazy">
+        </div>
         <div class="deal-pct">30% OFF</div>
         <div class="deal-name">Flame Burger Combo</div>
         <div class="deal-desc">Signature smash burger + crispy fries + 500ml drink. Best value meal.</div>
@@ -449,6 +544,9 @@ footer{background:#050505;padding:50px 6% 20px;border-top:1px solid #1a1a1a}
         <button class="deal-btn" onclick="addItem({id:'deal1',name:'Flame Burger Combo',price:6.99,img:'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=200&auto=format&fit=crop'})">Grab This Deal</button>
       </div>
       <div class="deal-card">
+        <div class="deal-img-wrap">
+          <img src="https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=400&auto=format&fit=crop" alt="Family Feast Box" loading="lazy">
+        </div>
         <div class="deal-pct">25% OFF</div>
         <div class="deal-name">Family Feast Box</div>
         <div class="deal-desc">4 burgers, 2 large fries, 4 drinks. Feed the whole crew for less.</div>
@@ -456,6 +554,9 @@ footer{background:#050505;padding:50px 6% 20px;border-top:1px solid #1a1a1a}
         <button class="deal-btn" onclick="addItem({id:'deal2',name:'Family Feast Box',price:24.99,img:'https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=200&auto=format&fit=crop'})">Grab This Deal</button>
       </div>
       <div class="deal-card">
+        <div class="deal-img-wrap">
+          <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&auto=format&fit=crop" alt="Pizza Tuesday" loading="lazy">
+        </div>
         <div class="deal-pct">2 for 1</div>
         <div class="deal-name">Pizza Tuesday</div>
         <div class="deal-desc">Buy any pizza, get the second free. Every Tuesday — no code needed.</div>
@@ -463,6 +564,9 @@ footer{background:#050505;padding:50px 6% 20px;border-top:1px solid #1a1a1a}
         <button class="deal-btn" onclick="showPage('menu')">Shop Pizzas</button>
       </div>
       <div class="deal-card">
+        <div class="deal-img-wrap">
+          <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&auto=format&fit=crop" alt="Enjoying delivery at home" loading="lazy">
+        </div>
         <div class="deal-pct">FREE</div>
         <div class="deal-name">Free Delivery</div>
         <div class="deal-desc">Spend $15 or more and get free delivery — any day, any time.</div>
@@ -489,11 +593,16 @@ footer{background:#050505;padding:50px 6% 20px;border-top:1px solid #1a1a1a}
   <section class="sec steps-sec">
     <div class="sec-title">HOW IT <span>WORKS</span></div>
     <div class="sec-sub">Order in 4 simple steps — food at your door in 30 minutes or less</div>
-    <div class="steps-grid">
-      <div class="step"><div class="step-num">STEP 01</div><h4>Pick Your Food</h4><p>Browse the full menu and add your favourites to your cart.</p></div>
-      <div class="step"><div class="step-num">STEP 02</div><h4>Enter Your Address</h4><p>Tell us where you are. We deliver within a 15km radius.</p></div>
-      <div class="step"><div class="step-num">STEP 03</div><h4>Pay Securely</h4><p>Multiple payment options. Safe and fast checkout every time.</p></div>
-      <div class="step"><div class="step-num">STEP 04</div><h4>Enjoy!</h4><p>Fresh, hot, delivered right to your door. Dig in!</p></div>
+    <div class="steps-wrapper">
+      <div class="steps-grid">
+        <div class="step"><div class="step-num">STEP 01</div><h4>Pick Your Food</h4><p>Browse the full menu and add your favourites to your cart.</p></div>
+        <div class="step"><div class="step-num">STEP 02</div><h4>Enter Your Address</h4><p>Tell us where you are. We deliver within a 15km radius.</p></div>
+        <div class="step"><div class="step-num">STEP 03</div><h4>Pay Securely</h4><p>Multiple payment options. Safe and fast checkout every time.</p></div>
+        <div class="step"><div class="step-num">STEP 04</div><h4>Enjoy!</h4><p>Fresh, hot, delivered right to your door. Dig in!</p></div>
+      </div>
+      <div class="steps-image">
+        <img src="https://images.unsplash.com/photo-1561758033-d89a9ad46330?w=800&auto=format&fit=crop" alt="Friends enjoying their meals at Flames" loading="lazy">
+      </div>
     </div>
   </section>
 
@@ -558,6 +667,9 @@ footer{background:#050505;padding:50px 6% 20px;border-top:1px solid #1a1a1a}
         <div class="value-box"><i class="fa-solid fa-heart"></i><h3>Community</h3><p>Supporting local businesses.</p></div>
       </div>
     </div>
+    <div class="about-img-wrap">
+      <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1200&auto=format&fit=crop" alt="Customers enjoying Flames meals" loading="lazy">
+    </div>
     <div class="about-card" style="margin-bottom:24px">
       <h2><i class="fa-solid fa-users"></i> Meet Our Team</h2>
       <div class="team-grid">
@@ -577,7 +689,7 @@ footer{background:#050505;padding:50px 6% 20px;border-top:1px solid #1a1a1a}
 
 <!-- ════ PAGE: CONTACT ════ -->
 <div id="page-contact" class="page">
-  <div class="about-hero">
+  <div class="about-hero" id="contact-hero">
     <div><h1><span>Contact</span> Us</h1><p>We're always here — reach out anytime.</p></div>
   </div>
   <section class="sec">
@@ -607,6 +719,89 @@ footer{background:#050505;padding:50px 6% 20px;border-top:1px solid #1a1a1a}
         <div class="form-group"><label>MESSAGE</label><textarea id="c-msg" placeholder="Write your message here…"></textarea></div>
         <button class="submit-btn" onclick="submitContact()">Send Message</button>
       </div>
+    </div>
+  </section>
+</div>
+
+<!-- ════ PAGE: TRACK ORDER ════ -->
+<div id="page-trackorder" class="page">
+  <div class="about-hero">
+    <div><h1><span>Track</span> Order</h1><p>Follow your delivery in real time.</p></div>
+  </div>
+  <section class="sec">
+    <div class="track-card">
+      <h2>Enter Your Order ID</h2>
+      <p style="color:var(--muted);margin-bottom:24px">Check the confirmation email or SMS for your order ID.</p>
+      <div style="display:flex;gap:12px;max-width:500px;margin:0 auto;flex-wrap:wrap">
+        <input type="text" id="track-id" placeholder="e.g. FLM-28491" style="flex:1;min-width:180px;padding:14px 18px;border-radius:10px;border:1px solid var(--border);background:var(--card);color:#fff;font-size:15px;outline:none;font-family:inherit">
+        <button class="btn-primary" onclick="trackOrder()">Track</button>
+      </div>
+      <div id="track-result" style="margin-top:28px;display:none">
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;text-align:left">
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:20px">
+            <span style="font-weight:700;font-size:18px">Order <span id="track-display-id" style="color:var(--red)">FLM-28491</span></span>
+            <span class="track-status" style="background:rgba(255,170,0,.15);color:#ffaa00;padding:6px 16px;border-radius:999px;font-size:13px;font-weight:700">Out for Delivery</span>
+          </div>
+          <div class="track-timeline">
+            <div class="tl-item done"><div class="tl-dot"></div><div><strong>Order Placed</strong><span>Just now</span></div></div>
+            <div class="tl-item done"><div class="tl-dot"></div><div><strong>Confirmed</strong><span>2 min ago</span></div></div>
+            <div class="tl-item done"><div class="tl-dot"></div><div><strong>Preparing</strong><span>8 min ago</span></div></div>
+            <div class="tl-item active"><div class="tl-dot"></div><div><strong>Out for Delivery</strong><span>Estimated 15 min</span></div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div><strong>Delivered</strong></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ════ PAGE: FAQS ════ -->
+<div id="page-faqs" class="page">
+  <div class="about-hero">
+    <div><h1>F<span>AQ</span>s</h1><p>Got questions? We've got answers.</p></div>
+  </div>
+  <section class="sec">
+    <div class="faq-list" style="max-width:720px;margin:0 auto">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">How do I place an order?<span class="faq-chev">▼</span></div>
+        <div class="faq-a">Browse our menu, add items to your cart, and proceed to checkout. Enter your delivery address and choose a payment method to confirm your order.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">How long does delivery take?<span class="faq-chev">▼</span></div>
+        <div class="faq-a">Most orders are delivered within 30–45 minutes. Delivery times may vary depending on your location and order volume.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What payment methods do you accept?<span class="faq-chev">▼</span></div>
+        <div class="faq-a">We accept Ecocash, Visa, Mastercard, and PayPal payments.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Can I cancel my order?<span class="faq-chev">▼</span></div>
+        <div class="faq-a">You can cancel within 5 minutes of placing your order. Contact support for cancellations after that window.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Do you deliver outside Victoria Falls?<span class="faq-chev">▼</span></div>
+        <div class="faq-a">Currently we deliver within Victoria Falls only. We are expanding to other cities soon!</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ════ PAGE: REFUND POLICY ════ -->
+<div id="page-refundpolicy" class="page">
+  <div class="about-hero">
+    <div><h1><span>Refund</span> Policy</h1><p>We stand by every order.</p></div>
+  </div>
+  <section class="sec">
+    <div style="max-width:720px;margin:0 auto;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px;text-align:left">
+      <h2 style="font-size:20px;margin-bottom:16px">Our Refund Guarantee</h2>
+      <p style="color:var(--muted);margin-bottom:20px;line-height:1.7">If there's an issue with your order, we'll make it right. Below are the conditions under which refunds are processed:</p>
+      <div style="display:grid;gap:16px">
+        <div style="background:var(--bg);border-radius:12px;padding:20px"><h3 style="font-size:15px;color:var(--red);margin-bottom:6px"><i class="fa-solid fa-circle-exclamation"></i> Wrong Item Received</h3><p style="font-size:13px;color:var(--muted)">Full refund or replacement if the item delivered does not match what was ordered.</p></div>
+        <div style="background:var(--bg);border-radius:12px;padding:20px"><h3 style="font-size:15px;color:var(--red);margin-bottom:6px"><i class="fa-solid fa-clock"></i> Late Delivery</h3><p style="font-size:13px;color:var(--muted)">If your order arrives more than 60 minutes past the estimated time, you qualify for a partial refund or discount on your next order.</p></div>
+        <div style="background:var(--bg);border-radius:12px;padding:20px"><h3 style="font-size:15px;color:var(--red);margin-bottom:6px"><i class="fa-solid fa-utensils"></i> Quality Issues</h3><p style="font-size:13px;color:var(--muted)">If the food quality does not meet our standards, we will refund or replace the affected items.</p></div>
+        <div style="background:var(--bg);border-radius:12px;padding:20px"><h3 style="font-size:15px;color:var(--red);margin-bottom:6px"><i class="fa-solid fa-receipt"></i> Cancellation</h3><p style="font-size:13px;color:var(--muted)">Orders cancelled within 5 minutes of placement are fully refunded. Cancellations after that are handled case by case.</p></div>
+      </div>
+      <p style="margin-top:24px;font-size:13px;color:#888">For refund requests, contact us at <strong style="color:#fff">hello@flames.co.zw</strong> or call <strong style="color:#fff">📞 1800-FLAMES</strong>.</p>
     </div>
   </section>
 </div>
@@ -686,19 +881,29 @@ footer{background:#050505;padding:50px 6% 20px;border-top:1px solid #1a1a1a}
   <div class="footer-grid">
     <div class="footer-brand">
       <div class="logo" onclick="showPage('home')">
-        <svg viewBox="0 0 240 60" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 250 60" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <filter id="flameShadow" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
+            <linearGradient id="flameGradF" x1="0" y1="1" x2="0" y2="0">
+              <stop offset="0%" stop-color="#cc1f1f"/>
+              <stop offset="50%" stop-color="#ff4500"/>
+              <stop offset="100%" stop-color="#ffd700"/>
+            </linearGradient>
+            <linearGradient id="textGradF" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#ff2a2a"/>
+              <stop offset="100%" stop-color="#ff6b35"/>
+            </linearGradient>
+            <filter id="flameGlowFilterF" x="-60%" y="-60%" width="220%" height="220%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="3"/>
             </filter>
           </defs>
-          <g>
-            <ellipse cx="22" cy="35" rx="8" ry="10" class="flame-glow" fill="rgba(255,42,42,.3)"/>
-            <path class="flame-path" d="M 22 15 Q 18 22 18 28 Q 18 38 22 42 Q 26 38 26 28 Q 26 22 22 15 Z" filter="url(#flameShadow)"/>
-            <path class="flame-path" d="M 22 20 Q 20 24 20 28 Q 20 35 22 38 Q 24 35 24 28 Q 24 24 22 20 Z" fill="#ff6666" opacity="0.8"/>
+          <g transform="translate(0,2)">
+            <ellipse cx="22" cy="38" rx="10" ry="12" class="flame-glow" fill="rgba(255,42,42,.25)"/>
+            <path class="flame-outer" d="M 22 12 Q 16 20 16 28 Q 16 40 22 45 Q 28 40 28 28 Q 28 20 22 12 Z" fill="url(#flameGradF)" filter="url(#flameGlowFilterF)"/>
+            <path class="flame-mid" d="M 22 18 Q 19 23 19 28 Q 19 37 22 41 Q 25 37 25 28 Q 25 23 22 18 Z" fill="#ff6b00"/>
+            <path class="flame-inner" d="M 22 22 Q 21 25 21 28 Q 21 34 22 37 Q 23 34 23 28 Q 23 25 22 22 Z" fill="#fffbe6"/>
           </g>
-          <text x="42" y="26" font-family="Poppins, sans-serif" font-size="26" font-weight="800" fill="#ff2a2a" letter-spacing="2" class="flame-text">FLAMES</text>
-          <text x="42" y="44" font-family="Poppins, sans-serif" font-size="8" font-weight="600" fill="#888" letter-spacing="1.5">RESTAURANT & GRILL</text>
+          <text x="42" y="27" font-family="Poppins, sans-serif" font-size="26" font-weight="800" fill="url(#textGradF)" letter-spacing="2" class="flame-text">FLAMES</text>
+          <text x="42" y="45" font-family="Poppins, sans-serif" font-size="8" font-weight="600" fill="#888" letter-spacing="1.5" class="flame-sub">RESTAURANT &amp; GRILL</text>
         </svg>
       </div>
       <p>Bold flavors, unbeatable prices, blazing-fast delivery. Made fresh on every order. Open 7 days a week.</p>
@@ -725,9 +930,9 @@ footer{background:#050505;padding:50px 6% 20px;border-top:1px solid #1a1a1a}
     </ul></div>
     <div class="footer-col"><h5>Support</h5><ul>
       <li><a onclick="showPage('contact')">Contact Us</a></li>
-      <li><a href="#">Track Order</a></li>
-      <li><a href="#">FAQs</a></li>
-      <li><a href="#">Refund Policy</a></li>
+      <li><a onclick="showPage('trackorder')">Track Order</a></li>
+      <li><a onclick="showPage('faqs')">FAQs</a></li>
+      <li><a onclick="showPage('refundpolicy')">Refund Policy</a></li>
       <li><a href="#">📞 1800-FLAMES</a></li>
     </ul></div>
   </div>
@@ -815,8 +1020,21 @@ function imgWrap(src, emoji, alt, cls='') {
 // ── PAGE ROUTER ──
 function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById('page-'+id).classList.add('active');
+  const el = document.getElementById('page-'+id);
+  if (el) el.classList.add('active');
   window.scrollTo({top:0, behavior:'smooth'});
+}
+
+// ── TRACK ORDER ──
+function trackOrder() {
+  const id = document.getElementById('track-id').value.trim();
+  if (!id) { toast('Please enter an order ID'); return; }
+  document.getElementById('track-display-id').textContent = id;
+  document.getElementById('track-result').style.display = 'block';
+}
+// ── FAQ TOGGLE ──
+function toggleFaq(el) {
+  el.parentElement.classList.toggle('open');
 }
 
 // ── MOBILE MENU ──
@@ -1009,7 +1227,24 @@ function buildSlider() {
     </div>`).join('');
 }
 
+// ── RANDOM HERO BACKGROUND ──
+const HERO_IMAGES = [
+  'https://images.unsplash.com/photo-1571869791859-8003315caf78?w=1920&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1920&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1920&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=1920&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1550966871-3ed3cdb51fed?w=1920&auto=format&fit=crop'
+];
+function setRandomHeroBg() {
+  const img = HERO_IMAGES[Math.floor(Math.random() * HERO_IMAGES.length)];
+  document.querySelector('.hero').style.background =
+    'linear-gradient(135deg,rgba(10,10,10,.93) 0%,rgba(26,0,0,.72) 50%,rgba(10,10,10,.93) 100%),' +
+    `url('${img}') center/cover no-repeat`;
+}
+
 document.addEventListener('DOMContentLoaded', () => { 
+  setRandomHeroBg();
   buildMenu(); 
   buildSlider(); 
   renderCart(); 
